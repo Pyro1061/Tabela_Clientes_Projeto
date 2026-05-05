@@ -1,0 +1,18 @@
+# MARIADB - TB_CL_CLIENTES 
+CREATE TABLE TB_CL_CLIENTES (
+    CL_id INT NOT NULL AUTO_INCREMENT,
+    CL_cpf_cnpj VARCHAR(18) NOT NULL,
+    CL_rg_ie VARCHAR(20),
+    CL_nome VARCHAR(500),
+    CL_apelido VARCHAR(500),
+    CL_status CHAR(1) NOT NULL,
+	CL_data_inclusao TIMESTAMP NOT NULL DEFAULT current_timestamp,
+    PRIMARY KEY (CL_id),
+    UNIQUE KEY uk_cpf_cnpj (CL_cpf_cnpj),
+    UNIQUE KEY uk_rg_ie (CL_rg_ie),
+
+    CONSTRAINT chk_status 
+        CHECK (CL_status IN ('A','I','B'))
+) ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_unicode_ci;
